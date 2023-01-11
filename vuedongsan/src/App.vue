@@ -10,64 +10,45 @@
   <div class="menu">
     <a href="" v-for="(tab, i) in menu" :key="i">{{ tab }}</a>
   </div>
-  <div>
+  <!-- <div>
     <img
-      src="./assets/room0.jpg"
+      :src="roomData[0].image"
       alt=""
       class="room-img"
       @click="modalOpen = !modalOpen"
     />
-    <h4 class="font-bold">{{ products[0] }}</h4>
-    <p>50 만원</p>
-    <button
-      @click="increase(0)"
-      class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-3 rounded"
-    >
-      허위매물신고
-    </button>
-    <span class="mx-1">신고수 : {{ report[0] }}</span>
+    <h4 class="font-bold">{{ roomData[0].title }}</h4>
+    <p>{{ roomData[0].price }}원</p>
   </div>
   <div>
     <img
-      src="./assets/room1.jpg"
+      :src="roomData[1].image"
       alt=""
       class="room-img"
       @click="modalOpen = !modalOpen"
     />
-    <h4 class="font-bold">{{ products[1] }}</h4>
-    <p>70 만원</p>
-    <button
-      @click="increase(1)"
-      class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-3 rounded"
-    >
-      허위매물신고
-    </button>
-    <span class="mx-1">신고수 : {{ report[1] }}</span>
+    <h4 class="font-bold">{{ roomData[1].title }}</h4>
+    <p>{{ roomData[1].price }}원</p>
   </div>
   <div>
     <img
-      src="./assets/room2.jpg"
+      :src="roomData[2].image"
       alt=""
       class="room-img"
       @click="modalOpen = !modalOpen"
     />
-    <h4 class="font-bold">{{ products[2] }}</h4>
-    <p>80 만원</p>
-    <button
-      @click="increase(2)"
-      class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-3 rounded"
-    >
-      허위매물신고
-    </button>
-    <span class="mx-1">신고수 : {{ report[2] }}</span>
-  </div>
-  <!-- <div class="products" v-for="(product, j) in products" :key="j">
-    <h4>{{ product }} 원룸</h4>
-    <p>가격은 아무거나</p>
+    <h4 class="font-bold">{{ roomData[2].title }}</h4>
+    <p>{{ roomData[2].price }}원</p>
   </div> -->
+  <div v-for="(prod, i) in roomData" :key="i">
+    <img :src="prod.image" class="room-img" @click="modalOpen = !modalOpen" />
+    <h4 class="font-bold">{{ prod.title }}</h4>
+    <p>{{ prod.price }}원</p>
+  </div>
 </template>
 
 <script>
+import oneroom from "./data/room.js";
 export default {
   name: "App",
   data() {
@@ -76,6 +57,7 @@ export default {
       menu: ["Home", "Shop", "About"],
       products: ["역삼동 원룸", "천호동 원룸", "마포구 원룸"],
       report: [0, 0, 0],
+      roomData: oneroom,
     };
   },
   methods: {
