@@ -40,7 +40,7 @@
     <h4 class="font-bold">{{ roomData[2].title }}</h4>
     <p>{{ roomData[2].price }}원</p>
   </div> -->
-  <div v-for="(prod, i) in roomData" :key="i">
+  <div v-for="prod in roomData" :key="prod.id">
     <img :src="prod.image" class="room-img" @click="modalOpen = !modalOpen" />
     <h4 class="font-bold">{{ prod.title }}</h4>
     <p>{{ prod.price }}원</p>
