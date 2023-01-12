@@ -2,46 +2,25 @@
   <div class="black-bg" v-if="modalOpen == true">
     <div class="white-bg">
       <button class="close font-bold" @click="modalOpen = !modalOpen">X</button>
-      <h4>상세페이지임</h4>
-      <p>상세페이지 내용임</p>
+      <img :src="roomData[modalNum].image" alt="" />
+      <h4 class="font-bold">{{ roomData[modalNum].title }}</h4>
+      <p>{{ roomData[modalNum].content }}</p>
+      <p>{{ roomData[modalNum].price }}원</p>
     </div>
   </div>
 
   <div class="menu">
     <a href="" v-for="(tab, i) in menu" :key="i">{{ tab }}</a>
   </div>
-  <!-- <div>
-    <img
-      :src="roomData[0].image"
-      alt=""
-      class="room-img"
-      @click="modalOpen = !modalOpen"
-    />
-    <h4 class="font-bold">{{ roomData[0].title }}</h4>
-    <p>{{ roomData[0].price }}원</p>
-  </div>
-  <div>
-    <img
-      :src="roomData[1].image"
-      alt=""
-      class="room-img"
-      @click="modalOpen = !modalOpen"
-    />
-    <h4 class="font-bold">{{ roomData[1].title }}</h4>
-    <p>{{ roomData[1].price }}원</p>
-  </div>
-  <div>
-    <img
-      :src="roomData[2].image"
-      alt=""
-      class="room-img"
-      @click="modalOpen = !modalOpen"
-    />
-    <h4 class="font-bold">{{ roomData[2].title }}</h4>
-    <p>{{ roomData[2].price }}원</p>
-  </div> -->
   <div v-for="prod in roomData" :key="prod.id">
-    <img :src="prod.image" class="room-img" @click="modalOpen = !modalOpen" />
+    <img
+      :src="prod.image"
+      class="room-img"
+      @click="
+        modalOpen = !modalOpen;
+        modalNum = prod.id;
+      "
+    />
     <h4 class="font-bold">{{ prod.title }}</h4>
     <p>{{ prod.price }}원</p>
   </div>
@@ -53,6 +32,7 @@ export default {
   name: "App",
   data() {
     return {
+      modalNum: 0,
       modalOpen: false,
       menu: ["Home", "Shop", "About"],
       products: ["역삼동 원룸", "천호동 원룸", "마포구 원룸"],
