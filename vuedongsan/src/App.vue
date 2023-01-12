@@ -1,33 +1,64 @@
 <template>
-  <div class="black-bg" v-if="modalOpen == true">
-    <div class="white-bg">
-      <button class="close font-bold" @click="modalOpen = !modalOpen">X</button>
-      <img :src="roomData[modalNum].image" alt="" />
-      <h4 class="font-bold">{{ roomData[modalNum].title }}</h4>
-      <p>{{ roomData[modalNum].content }}</p>
-      <p>{{ roomData[modalNum].price }}원</p>
-    </div>
-  </div>
-
+  <Modal :roomData="roomData" :modalNum="modalNum" :modalOpen="modalOpen" />
   <div class="menu">
     <a href="" v-for="(tab, i) in menu" :key="i">{{ tab }}</a>
   </div>
-  <div v-for="prod in roomData" :key="prod.id">
-    <img
-      :src="prod.image"
-      class="room-img"
-      @click="
-        modalOpen = !modalOpen;
-        modalNum = prod.id;
-      "
-    />
-    <h4 class="font-bold">{{ prod.title }}</h4>
-    <p>{{ prod.price }}원</p>
-  </div>
+  <Discount />
+  <Card
+    :roomData="roomData"
+    :num="roomData[0].id"
+    @click="
+      modalOpen = true;
+      modalNum = roomData[0].id;
+    "
+  />
+  <Card
+    :roomData="roomData"
+    :num="roomData[1].id"
+    @click="
+      modalOpen = true;
+      modalNum = roomData[1].id;
+    "
+  />
+  <Card
+    :roomData="roomData"
+    :num="roomData[2].id"
+    @click="
+      modalOpen = true;
+      modalNum = roomData[2].id;
+    "
+  />
+  <Card
+    :roomData="roomData"
+    :num="roomData[3].id"
+    @click="
+      modalOpen = true;
+      modalNum = roomData[3].id;
+    "
+  />
+  <Card
+    :roomData="roomData"
+    :num="roomData[4].id"
+    @click="
+      modalOpen = true;
+      modalNum = roomData[4].id;
+    "
+  />
+  <Card
+    :roomData="roomData"
+    :num="roomData[5].id"
+    @click="
+      modalOpen = true;
+      modalNum = roomData[5].id;
+    "
+  />
 </template>
 
 <script>
 import oneroom from "./data/room.js";
+import Discount from "./DiscountBanner.vue";
+import Modal from "./Modal.vue";
+import Card from "./components/Card.vue";
 export default {
   name: "App",
   data() {
@@ -36,7 +67,6 @@ export default {
       modalOpen: false,
       menu: ["Home", "Shop", "About"],
       products: ["역삼동 원룸", "천호동 원룸", "마포구 원룸"],
-      report: [0, 0, 0],
       roomData: oneroom,
     };
   },
@@ -45,7 +75,11 @@ export default {
       this.report[idx]++;
     },
   },
-  components: {},
+  components: {
+    Discount,
+    Modal,
+    Card,
+  },
 };
 </script>
 
@@ -70,32 +104,7 @@ export default {
   text-decoration: none;
 }
 
-.room-img {
-  width: 100%;
-  margin-top: 40px;
-}
-
 body {
   margin: 0;
-}
-div {
-  box-sizing: border-box;
-}
-.black-bg {
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.5);
-  position: fixed;
-  padding: 20px;
-}
-.white-bg {
-  width: 100%;
-  background: white;
-  border-radius: 8px;
-  padding: 20px;
-}
-
-.close {
-  margin-left: 90%;
 }
 </style>
