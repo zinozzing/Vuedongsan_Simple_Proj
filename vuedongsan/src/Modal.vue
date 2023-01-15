@@ -1,7 +1,7 @@
 <template>
   <div class="black-bg" v-if="modalOpen == true">
     <div class="white-bg">
-      <!-- <button class="close font-bold" @click="modalOpen = !modalOpen">X</button> -->
+      <button @click="$emit('closeModal')" class="close font-bold">X</button>
       <img :src="roomData[modalNum].image" alt="" />
       <h4 class="font-bold">{{ roomData[modalNum].title }}</h4>
       <p>{{ roomData[modalNum].content }}</p>
@@ -44,5 +44,9 @@ div {
 
 .close {
   margin-left: 90%;
+}
+
+img {
+  width: 100%;
 }
 </style>

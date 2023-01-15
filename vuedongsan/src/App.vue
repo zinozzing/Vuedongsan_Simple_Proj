@@ -1,56 +1,22 @@
 <template>
-  <Modal :roomData="roomData" :modalNum="modalNum" :modalOpen="modalOpen" />
+  <Modal
+    :roomData="roomData"
+    :modalNum="modalNum"
+    :modalOpen="modalOpen"
+    @closeModal="modalOpen = false"
+  />
   <div class="menu">
     <a href="" v-for="(tab, i) in menu" :key="i">{{ tab }}</a>
   </div>
   <Discount />
   <Card
-    :roomData="roomData"
-    :num="roomData[0].id"
-    @click="
-      modalOpen = true;
-      modalNum = roomData[0].id;
+    @openModal="
+      modalOpen = !modalOpen;
+      modalNum = j;
     "
-  />
-  <Card
-    :roomData="roomData"
-    :num="roomData[1].id"
-    @click="
-      modalOpen = true;
-      modalNum = roomData[1].id;
-    "
-  />
-  <Card
-    :roomData="roomData"
-    :num="roomData[2].id"
-    @click="
-      modalOpen = true;
-      modalNum = roomData[2].id;
-    "
-  />
-  <Card
-    :roomData="roomData"
-    :num="roomData[3].id"
-    @click="
-      modalOpen = true;
-      modalNum = roomData[3].id;
-    "
-  />
-  <Card
-    :roomData="roomData"
-    :num="roomData[4].id"
-    @click="
-      modalOpen = true;
-      modalNum = roomData[4].id;
-    "
-  />
-  <Card
-    :roomData="roomData"
-    :num="roomData[5].id"
-    @click="
-      modalOpen = true;
-      modalNum = roomData[5].id;
-    "
+    v-for="(room, j) in roomData"
+    :key="j"
+    :roomData="room"
   />
 </template>
 
@@ -70,11 +36,7 @@ export default {
       roomData: oneroom,
     };
   },
-  methods: {
-    increase(idx) {
-      this.report[idx]++;
-    },
-  },
+  methods: {},
   components: {
     Discount,
     Modal,

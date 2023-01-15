@@ -1,8 +1,8 @@
 <template>
   <div>
-    <img :src="roomData[num].image" class="room-img" />
-    <h4 class="font-bold">{{ roomData[num].title }}</h4>
-    <p>{{ roomData[num].price }}원</p>
+    <img :src="roomData.image" class="room-img" />
+    <h4 class="font-bold" @click="$emit('openModal')">{{ roomData.title }}</h4>
+    <p>{{ roomData.price }}원</p>
   </div>
 </template>
 
@@ -10,8 +10,7 @@
 export default {
   name: "Card",
   props: {
-    roomData: Array,
-    num: Number,
+    roomData: Object,
   },
   data() {
     return {};
