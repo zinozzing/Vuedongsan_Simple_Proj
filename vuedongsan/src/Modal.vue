@@ -5,7 +5,9 @@
       <img :src="roomData[modalNum].image" alt="" />
       <h4 class="font-bold">{{ roomData[modalNum].title }}</h4>
       <p>{{ roomData[modalNum].content }}</p>
-      <p>{{ roomData[modalNum].price }}원</p>
+      <!-- <input @input="month = $event.target.value" /> -->
+      <input v-model.number="month" />
+      <p>{{ month }}개월 선택함 : {{ roomData[modalNum].price * month }}원</p>
     </div>
   </div>
 </template>
@@ -13,13 +15,23 @@
 <script>
 export default {
   name: "Modal",
+  data() {
+    return {
+      month: 1,
+    };
+  },
   props: {
     roomData: Array,
     modalNum: Number,
     modalOpen: Boolean,
   },
-  data() {
-    return {};
+  watch: {
+    month(data) {
+      if (isNaN(data)) {
+        alert("숫자만 입력해주세요");
+        this.month = 1;
+      }
+    },
   },
 };
 </script>
