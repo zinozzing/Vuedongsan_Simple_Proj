@@ -29,9 +29,15 @@ export default {
     month(data) {
       if (isNaN(data)) {
         alert("숫자만 입력해주세요");
-        this.month = 1;
+        this.month = 0;
       }
     },
+  },
+  beforeUpdate() {
+    if (this.month == 2) {
+      alert("2개월은 불가능합니다!");
+      this.month = 0;
+    }
   },
 };
 </script>
